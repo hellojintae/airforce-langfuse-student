@@ -1,4 +1,5 @@
 import { traceEnabled, shutdown } from './instrumentation.js';
+import { flushScores } from './flush-scores.js';
 import { LangfuseClient } from '@langfuse/client';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -117,4 +118,4 @@ try {
     console.table(judgments.map(j=>({caseId:j.caseId,status:j.status,score:j.score,reason:'reason' in j?j.reason:('error' in j?j.error:'답변 없음'),evidenceIds:'evidenceIds' in j?j.evidenceIds.join(', '):''})));
     console.log('Judge results saved. Review errors separately and calibrate with human labels.');
   } else throw new Error('Commands: demo | compare | seed | experiment | judge');
-} finally { await client?.flush(); await shutdown(); }
+} finally { await flushScores(client); await shutdown(); }

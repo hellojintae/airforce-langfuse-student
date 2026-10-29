@@ -76,7 +76,7 @@ pnpm lab 1       # C01 실행 → 내 Trace 찾기
 - 실습 4: 받은 `prepared-model-comparison.json`을 **최상위 `results/`**에 넣습니다. 새 모델 요청 없음.
 - Judge는 강사 시연을 보며 사람의 판단과 점수를 비교합니다.
 
-[자세한 실습 순서와 기록 양식](docs/LAB.md) · [학생 안내 HTML](https://github.com/hellojintae/airforce-langfuse-student/blob/main/slides/student-guide.html) — HTML은 **Download raw file**로 내려받아 브라우저에서 엽니다.
+[Langfuse 메뉴 지도](docs/LANGFUSE_UI.md) · [자세한 실습 순서와 기록 양식](docs/LAB.md) · [학생 안내 HTML](https://github.com/hellojintae/airforce-langfuse-student/blob/main/slides/student-guide.html) — HTML은 **Download raw file**로 내려받아 브라우저에서 엽니다.
 
 ---
 

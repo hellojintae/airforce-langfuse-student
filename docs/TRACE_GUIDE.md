@@ -2,6 +2,8 @@
 
 먼저 정상 사례 하나로 화면 읽기를 연습합니다. 수업 화면에서 한 곳을 선택하면 내 화면에서도 같은 기록을 선택해 보세요.
 
+메뉴가 처음이라면 [Langfuse 메뉴 지도](LANGFUSE_UI.md)를 먼저 읽습니다.
+
 ## 먼저 실행
 
 `lab/` 폴더에서 다음 명령을 입력합니다. 키와 `TRACE_ENABLED=true` 설정은 [환경 준비](SETUP.md)에서 확인합니다.
@@ -16,7 +18,7 @@ pnpm lab 1
 2. `rows`에서 `input.caseId`가 `C01`인 항목을 찾습니다.
 3. 같은 항목의 `output.traceId`를 복사합니다.
 4. Langfuse의 배정 프로젝트에서 실행 시각 범위를 맞춥니다.
-5. Observations 또는 Traces/Tracing 화면에서 Trace ID로 검색·필터링하고 실행 트리를 엽니다.
+5. 왼쪽 **Tracing**에서 Trace ID로 검색·필터링하고 실행 트리를 엽니다. 시간과 Env 필터가 내 실행을 포함하는지 확인합니다.
 
 같은 조의 여러 사람이 C01을 실행할 수 있습니다. 내 결과 파일의 Trace ID와 시각으로 구분합니다. 화면 위치가 다르면 수업의 실제 화면을 따라갑니다. [Langfuse 공식 화면 안내](https://langfuse.com/faq/all/explore-observations-in-v4)
 

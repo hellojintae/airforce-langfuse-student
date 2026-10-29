@@ -5,6 +5,28 @@ import { mkdtempSync, readFileSync, writeFileSync, rmSync, readdirSync } from 'n
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { comparisonHtml } from './comparison.js';
+import { LangfuseClient } from '@langfuse/client';
+import { flushScores } from './flush-scores.js';
+
+test('short fixture runs drain scores queued during an automatic SDK batch', async () => {
+ const client=new LangfuseClient({publicKey:'test-public',secretKey:'test-secret',baseUrl:'https://training.invalid'});
+ const sent:string[]=[];
+ let releaseFirst!:()=>void;
+ const first=new Promise<void>(resolve=>{releaseFirst=resolve;});
+ let requests=0;
+ client.api.ingestion.batch=(async ({batch}:any)=>{
+   requests++;
+   if(requests===1) await first;
+   sent.push(...batch.map((event:any)=>event.body.id));
+   return {successes:[],errors:[]};
+ }) as any;
+ for(let i=0;i<50;i++) client.score.create({id:`fixture-score-${i}`,traceId:'test-trace',name:'rule',value:1});
+ const done=flushScores(client);
+ releaseFirst();
+ await done;
+ assert.equal(sent.length,50,'every score must be sent before the process exits');
+ assert.equal(new Set(sent).size,50,'no duplicate score transmission');
+});
 
 // Transport stand-in only: no real endpoint, model-quality claim or exported results.
 const preloader=`import {appendFileSync} from 'node:fs';
