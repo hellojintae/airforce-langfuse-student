@@ -1,8 +1,21 @@
 # 공군 AI센터 · Agentic AI 2일차 — Langfuse 실습
 
-2026. 10. 30(금) 14:30–16:00 · TypeScript · LangGraph.js · Langfuse
+2026. 10. 30(금) · Agentic AI 트렌드 · Langfuse · AI Study 참여 실습
 
-**실습 시작 (설치 없음, 브라우저만):** 아래 버튼을 열고 `main` · `2-core`를 확인한 뒤 **Create codespace**
+## 강의자료
+
+[통합장표 HTML 내려받기](https://raw.githubusercontent.com/hellojintae/airforce-langfuse-student/main/slides/lecture.html) · [GitHub에서 파일 보기](slides/lecture.html)
+
+- **124장:** 트렌드 → Langfuse 소개 → 메뉴 소개 → 실습 순서입니다.
+- HTML 파일을 내려받아 Chrome·Edge·Safari에서 엽니다. 화면 이동은 방향키, 목차는 `O`, 출처는 `R`입니다. 글꼴·이미지·영상 3개가 내장되어 약 51MB이며, 나머지 공식 영상과 외부 서비스에는 인터넷이 필요합니다.
+- **현재 본 실습:** [AI Study](https://aistudy.my/airforce)에 질문 → 본인 Langfuse Trace 확인 → 코드 발췌 이해 → 규칙 변경 전후 비교. Langfuse 프로젝트 조회 권한은 강사 안내를 따릅니다. 학생 API 키와 Codespaces 설치는 본 실습에 필요하지 않습니다.
+- 이 저장소에는 학생용 발표 장표만 추가했습니다. 발표 스크립트·강사 메모·키는 포함하지 않습니다.
+
+## 보충 코드 실습
+
+아래 TypeScript·LangGraph 코드와 Codespaces 안내는 선택 보충 실습입니다. 본 실습과 별도로 강사가 안내할 때 진행합니다.
+
+**보충 실습 시작 (설치 없음, 브라우저만):** 아래 버튼을 열고 `main` · `2-core`를 확인한 뒤 **Create codespace**
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/hellojintae/airforce-langfuse-student?ref=main)
 
