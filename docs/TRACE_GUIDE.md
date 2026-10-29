@@ -2,9 +2,17 @@
 
 먼저 정상 사례 하나로 화면 읽기를 연습합니다. 수업 화면에서 한 곳을 선택하면 내 화면에서도 같은 기록을 선택해 보세요.
 
+## 먼저 실행
+
+`lab/` 폴더에서 다음 명령을 입력합니다. 키와 `TRACE_ENABLED=true` 설정은 [환경 준비](SETUP.md)에서 확인합니다.
+
+```sh
+pnpm lab 1
+```
+
 ## 내 Trace 찾기
 
-1. Codespaces 터미널에 표시된 `results/…-baseline.json`을 엽니다.
+1. Codespaces 터미널에 표시된 `results/…-baseline.json`을 엽니다. `results`는 저장소 최상위에 있습니다.
 2. `rows`에서 `input.caseId`가 `C01`인 항목을 찾습니다.
 3. 같은 항목의 `output.traceId`를 복사합니다.
 4. Langfuse의 배정 프로젝트에서 실행 시각 범위를 맞춥니다.

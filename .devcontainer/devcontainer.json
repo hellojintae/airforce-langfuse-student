@@ -1,14 +1,15 @@
 {
-  "name": "Langfuse 학생 실습 · Node 22",
+  "name": "공군 Agentic AI 2일차 · Langfuse 실습",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
   "hostRequirements": {
     "cpus": 2
   },
-  "postCreateCommand": "npm exec --yes --package=pnpm@9.14.2 -- pnpm install --frozen-lockfile && node workshop.mjs setup && node workshop.mjs preflight --offline",
+  "postCreateCommand": "sudo corepack enable && corepack install && pnpm install --frozen-lockfile && node workshop.mjs setup && node workshop.mjs preflight --offline",
   "customizations": {
     "vscode": {
       "settings": {
-        "files.eol": "\n"
+        "files.eol": "\n",
+        "terminal.integrated.defaultProfile.linux": "bash"
       }
     },
     "codespaces": {
@@ -16,5 +17,9 @@
         "README.md"
       ]
     }
+  },
+  "containerEnv": {
+    "TZ": "Asia/Seoul",
+    "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"
   }
 }

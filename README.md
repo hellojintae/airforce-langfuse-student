@@ -1,51 +1,126 @@
-# Langfuse 학생 실습
+# 공군 AI센터 · Agentic AI 2일차 — Langfuse 실습
 
-교육장 PC 점검 접수 예제로 **Agent가 어떤 과정을 거쳤는지 읽고, 답변을 비교하는 실습**입니다. Windows와 Mac 모두 브라우저의 GitHub Codespaces를 사용합니다.
+2026. 10. 30(금) 14:30–16:00 · TypeScript · LangGraph.js · Langfuse
 
-[Codespaces에서 실습 시작](https://codespaces.new/hellojintae/airforce-langfuse-student?ref=main)
+**실습 시작 (설치 없음, 브라우저만):** 아래 버튼을 열고 `main` · `2-core`를 확인한 뒤 **Create codespace**
 
-## 처음 왔다면
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/hellojintae/airforce-langfuse-student?ref=main)
 
-1. GitHub에 로그인하고 위 링크로 Codespace를 만듭니다. 2-core를 선택합니다.
-2. 설치가 끝나면 [환경 준비](docs/SETUP.md)에 따라 배정받은 키와 Langfuse 프로젝트를 연결합니다.
-3. [C01 Trace 읽기](docs/TRACE_GUIDE.md)를 따라 입력·답변·점수의 위치를 찾습니다.
-4. 수업 안내에 맞춰 [실습 순서](docs/LAB.md)를 진행합니다.
+```text
+https://codespaces.new/hellojintae/airforce-langfuse-student?ref=main
+```
 
-Codespace 생성 시 Node.js 22와 필요한 패키지를 설치합니다. 노트북에 Node·Docker·LLM 서버를 설치할 필요는 없습니다. 앞 강의 Codespace를 재사용하는 방법도 환경 준비 문서에 있습니다.
+> [1일차 실습](https://github.com/doongsilee/agentic-ai-lecture)처럼 `lab/`에서 `pnpm lab 번호`로 진행합니다. 이번에는 **실행 기록을 읽고 답변을 비교**합니다. PC 점검 접수와 참고 자료는 교육용 합성 예제이며, 조회·등록도 모의 동작입니다.
 
-## 오늘 할 일
+---
 
-| 순서 | 내가 할 일 | 명령 | 확인할 것 |
-|---|---|---|---|
-| 연결 확인 | 배정 프로젝트 연결 확인 | `node workshop.mjs lesson 0` | 인증 PASS 뒤 C01의 새 Trace 확인 |
-| 실습 1 | 실행 기록 읽기 | `node workshop.mjs lesson 1` | 내 사례의 입력·처리 과정·결과·점수 |
-| 실습 2 | 같은 모델의 프롬프트 A/B 비교 | `node workshop.mjs lesson 6` | 같은 입력에서 나온 두 답변의 차이 |
-| 실습 3 | 배포받은 모델 비교 결과 읽기 | `node workshop.mjs lesson 7` | 같은 프롬프트로 비교한 두 모델의 결과 |
-| 정리 | 결과와 메모 다운로드 | Codespaces 파일 탐색기 | 학습 기록 보관 후 Codespace Stop |
+## 1. 시작
 
-**번호를 0부터 차례로 전부 실행하지 않습니다.** 주 실습은 1 → 6 → 7입니다. 2는 코드 검사, 3은 연결 장애 때 사용하는 합성 비교입니다. Judge는 수업 중 시연 결과를 읽습니다.
+### Codespaces (설치 없음, 권장)
 
-- 실습 1은 합성 답변을 사용하며 실제 모델을 호출하지 않습니다.
-- 실습 2는 실제 모델을 최대 6회 요청합니다. 수업 안내에 맞춰 한 번 실행합니다.
-- 실습 3은 받은 파일을 읽으며 새 모델 요청을 하지 않습니다. 비교 JSON은 별도로 받아야 합니다.
+GitHub 계정으로 위 버튼을 누릅니다. 브라우저에 VS Code가 열리고 패키지 설치가 끝날 때까지 기다립니다.
 
-## 준비물
+- **“준비 끝”**이 보이면 아래 명령으로 C01 한 건을 실행합니다.
+- 처음에는 키 없이 합성 답변을 확인할 수 있습니다. Langfuse 화면으로 보려면 아래 **조별 키** 설정이 필요합니다.
+- 수업 중 업데이트는 `git pull`로 받습니다. 수정 파일 때문에 중단되면 [막히면](#3-막히면)을 확인합니다.
+- 수업이 끝나면 [Codespaces 목록](https://github.com/codespaces)에서 **Stop**합니다.
 
-- GitHub 계정과 브라우저
-- Langfuse Japan 계정, 교육 조직 초대 수락, 배정 프로젝트
-- 배정 프로젝트의 Langfuse Public/Secret Key와 모델 API 키
-- 모델 비교 실습용 `prepared-model-comparison.json` 또는 배포받은 비교 HTML
+```bash
+cd lab
+pnpm lab 1
+```
 
-실제 키와 실행 결과는 이 저장소에 없습니다. 키는 [환경 준비](docs/SETUP.md)의 Codespaces Secrets에 등록합니다.
+앞 강의 Codespace를 계속 써도 됩니다. [같은 Codespace에 Langfuse 실습 추가하기](docs/SETUP.md#앞-강의-codespace를-재사용한다면)를 따릅니다.
 
-## 실습 중 참고
+### 내 노트북 (선택)
 
-| 문서 | 필요할 때 |
+Node.js 22 · git이 있는 경우입니다. Windows와 Mac 모두 Codespaces를 우선 사용합니다.
+
+```bash
+git clone https://github.com/hellojintae/airforce-langfuse-student.git
+cd airforce-langfuse-student
+corepack enable
+corepack install
+pnpm install --frozen-lockfile
+node workshop.mjs setup
+cd lab
+pnpm lab 1
+```
+
+### 조별 키
+
+[환경 준비](docs/SETUP.md)에 따라 Langfuse 초대를 수락하고 배정 프로젝트를 엽니다. 받은 `LANGFUSE_PUBLIC_KEY` · `LANGFUSE_SECRET_KEY` · 모델 키는 Codespaces Secrets에 등록합니다.
+
+일반 설정은 **저장소 최상위 `.env`**에 있습니다 (`lab/.env`가 아닙니다). Langfuse 키를 등록한 뒤 `TRACE_ENABLED=true`로 바꾸고 연결을 확인합니다. 모델 주소·이름·`LLM_MODE=cloud`는 실습 3 전에 설정합니다.
+
+```bash
+pnpm lab 0       # Langfuse 프로젝트 인증 확인
+pnpm lab 1       # C01 실행 → 내 Trace 찾기
+```
+
+---
+
+## 2. 실습 파일
+
+명령은 모두 `lab/` 폴더에서 입력합니다. **1 → 2 → 3 → 4** 순서입니다. 관찰할 코드 파일은 아래 링크로 엽니다.
+
+| 실습 | 하는 일 | 읽을 파일 / 안내 |
+|---|---|---|
+| `pnpm lab 1` | C01로 입력·답변·점수 찾기 | [화면 읽기](docs/TRACE_GUIDE.md) · [graph.ts](src/graph.ts) |
+| `pnpm lab 2` | 내 조 사례의 실행 과정 설명하기 | [agent.ts](src/agent.ts) · [evaluate.ts](src/evaluate.ts) |
+| `pnpm lab 3` | 같은 모델, 두 프롬프트 비교 | [agent.ts의 prompts](src/agent.ts) · [실습 안내](docs/LAB.md) |
+| `pnpm lab 4` | 받은 파일로 두 모델 결과 비교 | [review.ts](src/review.ts) · [실습 안내](docs/LAB.md) |
+
+- 실습 1·2: 준비된 합성 답변. 실제 모델 요청 없음.
+- 실습 3: 실제 모델에 최대 6회 요청. 수업 안내에 맞춰 한 번 실행합니다.
+- 실습 4: 받은 `prepared-model-comparison.json`을 **최상위 `results/`**에 넣습니다. 새 모델 요청 없음.
+- Judge는 강사 시연을 보며 사람의 판단과 점수를 비교합니다.
+
+[자세한 실습 순서와 기록 양식](docs/LAB.md) · [학생 안내 HTML](https://github.com/hellojintae/airforce-langfuse-student/blob/main/slides/student-guide.html) — HTML은 **Download raw file**로 내려받아 브라우저에서 엽니다.
+
+---
+
+## 3. 막히면
+
+```bash
+pnpm lab help       # 명령과 다음 단계
+pnpm lab 0 --offline # 설치만 확인 (Cloud 연결 확인은 아님)
+pnpm lab offline    # 연결 장애 때 합성 비교 (모델·Langfuse 요청 없음)
+```
+
+- 진행이 늦었다면 강사가 안내한 `pnpm lab 번호`로 이동합니다. 각 실습은 완성된 예제를 실행하므로 `pnpm step`으로 코드를 덮어쓸 필요가 없습니다. 실습 3의 키, 실습 4의 비교 파일은 필요합니다.
+- `git pull`이 수정 파일 때문에 멈추면 먼저 파일을 저장·Download하고 담당자에게 보여 주세요. 강제 초기화하지 않습니다.
+- 원인별 확인 순서: [문제 해결](docs/TROUBLESHOOTING.md).
+
+---
+
+## 4. 화면 읽는 법
+
+| 보이는 값 | 뜻 |
 |---|---|
-| [환경 준비](docs/SETUP.md) | Codespace를 처음 열거나 키를 설정할 때 |
-| [C01 Trace 읽기](docs/TRACE_GUIDE.md) | Langfuse에서 무엇을 눌러야 할지 모를 때 |
-| [실습 순서와 기록 양식](docs/LAB.md) | 실습 1·6·7을 따라갈 때 |
-| [막혔을 때](docs/TROUBLESHOOTING.md) | 실행·연결·파일 오류가 날 때 |
-| [코드 지도](docs/CODE_MAP.md) | 관찰한 동작이 어느 파일에 있는지 찾을 때 |
+| `[실습 N]` / `[다음]` | 지금 할 일 / 실행 후 열어 볼 파일 |
+| `mode=fixture` | 준비된 합성 답변으로 실행함 |
+| `mode=live` | 실제 모델 endpoint에 요청한 실행 |
+| `saved results/…json` | 입력·답변·점수가 저장된 파일 |
+| `output.traceId` | Langfuse에서 **내 실행**을 찾는 ID |
+| `status` / `writes` | 어떻게 끝났는지 / 교육용 등록 횟수 |
+| `case_pass` | 코드의 검사 기준을 모두 통과하면 1, 아니면 0 |
 
-`data/cases.json`의 입력과 기대 결과는 채점에 사용하는 교육용 합성 자료입니다. 조회·등록도 교육용이며 실제 업무 시스템을 변경하지 않습니다. 실제 모델을 사용하는 실습도 입력 자료는 같은 합성 사례입니다.
+1일차에는 터미널에서 실행 흐름을 읽었습니다. 이번에는 **결과 JSON의 Trace ID → Langfuse 실행 트리 → Input·Output → Scores** 순서로 읽습니다. [C01을 함께 읽는 순서](docs/TRACE_GUIDE.md)
+
+---
+
+## 5. 폴더
+
+| 폴더 / 파일 | 내용 |
+|---|---|
+| `lab/` | `pnpm lab 번호`를 입력하는 곳 |
+| `src/` | Agent · LangGraph · 기록 · 평가 코드 |
+| `data/` | 교육용 입력과 채점 기준 |
+| `docs/` | 환경 준비 · 화면 읽기 · 실습 · 문제 해결 · 코드 지도 |
+| `slides/` | 학생 안내 HTML (내려받아 브라우저로 열기) |
+| `results/` | 실행 후 생기는 결과. 저장소에는 포함되지 않음 |
+| `.env` | 최상위 폴더의 개인 설정. Git에 올리지 않음 |
+| `.devcontainer/` | Codespaces 자동 준비 설정 |
+
+기존 장표의 `node workshop.mjs lesson 1 / 6 / 7`은 새 학생 명령 `pnpm lab 2 / 3 / 4`와 같습니다. 기존 명령은 최상위 폴더에서 실행합니다. [전체 명령 대응표](docs/CODE_MAP.md)

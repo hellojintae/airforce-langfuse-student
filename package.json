@@ -10,9 +10,10 @@
     "preflight": "node scripts/preflight.mjs",
     "setup:lab": "node scripts/setup.mjs",
     "check": "tsc --noEmit",
-    "test": "tsx --test src/lab.test.ts src/live.test.ts scripts/environment.test.mjs",
+    "test": "tsx --test src/lab.test.ts src/live.test.ts scripts/environment.test.mjs scripts/lab.test.mjs",
     "demo": "tsx src/main.ts demo",
-    "compare": "tsx src/main.ts compare"
+    "compare": "tsx src/main.ts compare",
+    "lab": "node scripts/lab.mjs"
   },
   "dependencies": {
     "@langchain/core": "1.2.17",

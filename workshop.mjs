@@ -10,7 +10,7 @@ const commands = {
   lesson: [node, ['scripts/lesson.mjs']],
   preflight: [node, ['scripts/preflight.mjs']],
   check: [node, ['node_modules/typescript/bin/tsc', '--noEmit']],
-  test: [node, ['--import', 'tsx', '--test', 'src/lab.test.ts', 'src/live.test.ts', 'scripts/environment.test.mjs']],
+  test: [node, ['--import', 'tsx', '--test', 'src/lab.test.ts', 'src/live.test.ts', 'scripts/environment.test.mjs', 'scripts/lab.test.mjs']],
   review: [node, ['--import','tsx','src/review.ts']],
   ...Object.fromEntries(['demo','compare'].map(name =>
     [name, [node, ['--import','tsx','src/main.ts',name]]])),

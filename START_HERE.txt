@@ -1,16 +1,19 @@
-Langfuse 학생 실습
+공군 AI센터 · Agentic AI 2일차 — Langfuse 실습
 
-1. README.md와 docs/SETUP.md를 읽고 Codespace와 배정 프로젝트를 연결합니다.
-2. docs/TRACE_GUIDE.md로 C01의 입력·답변·점수를 찾아봅니다.
-3. docs/LAB.md에 따라 lesson 1 → lesson 6 → lesson 7을 진행합니다.
+README.md → docs/SETUP.md 순서로 읽습니다.
+Codespace에 “준비 끝”이 보이면:
+  cd lab
+  pnpm lab 1
 
-연결 확인: node workshop.mjs lesson 0
-실행 기록: node workshop.mjs lesson 1
-실제 프롬프트 비교: node workshop.mjs lesson 6
-배포받은 모델 비교 파일 읽기: node workshop.mjs lesson 7
+Langfuse 설정을 마친 뒤 pnpm lab 0으로 연결을 확인합니다.
+수업 순서:
+  pnpm lab 1  C01로 Langfuse 화면 읽기
+  pnpm lab 2  조별 사례 분석
+  pnpm lab 3  실제 프롬프트 A/B 비교 (최대 6회 모델 요청)
+  pnpm lab 4  받은 모델 비교 JSON 읽기 (새 요청 없음)
 
-lesson 6은 실제 모델을 최대 6회 요청합니다. 수업 안내에 맞춰 실행합니다.
-lesson 7에는 별도로 받은 results/prepared-model-comparison.json이 필요합니다.
-실제 키와 실행 결과는 저장소에 포함되어 있지 않습니다.
-
+설정 .env와 결과 results/는 lab/의 상위, 저장소 최상위에 있습니다.
+실습 4에는 별도로 받은 results/prepared-model-comparison.json이 필요합니다.
+막히면 pnpm lab help 또는 docs/TROUBLESHOOTING.md를 확인합니다.
+학생 안내 HTML: slides/student-guide.html (내려받아 브라우저에서 열기)
 결과를 내려받은 뒤 Codespaces 목록에서 Stop합니다.

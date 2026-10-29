@@ -11,10 +11,11 @@
 ```sh
 pwd
 node --version
-node workshop.mjs lesson help
+cd lab
+pnpm lab help
 ```
 
-새 Codespace의 기본 경로는 `/workspaces/airforce-langfuse-student`, Node는 `v22.x`입니다. 목록에 학생 실습 0·1·2·3·6·7이 보이면 됩니다. 아직 연결하지 않은 API를 호출하지 않습니다.
+실습 명령을 입력할 경로는 `/workspaces/airforce-langfuse-student/lab`, Node는 `v22.x`입니다. 목록에 학생 실습 0·1·2·3·4가 보이면 됩니다. 아직 연결하지 않은 API를 호출하지 않습니다.
 
 ### 앞 강의 Codespace를 재사용한다면
 
@@ -24,11 +25,17 @@ node workshop.mjs lesson help
 cd /workspaces
 git clone https://github.com/hellojintae/airforce-langfuse-student.git
 cd airforce-langfuse-student
-npm exec --yes --package=pnpm@9.14.2 -- pnpm install --frozen-lockfile
+corepack pnpm install --frozen-lockfile
 node workshop.mjs setup
+cd lab
+corepack pnpm lab help
 ```
 
+앞 강의와 이 저장소는 각각 지정한 pnpm 버전을 사용합니다. 기존 Codespace의 버전이 다르면 `pnpm` 대신 `corepack pnpm`으로 실행합니다. 예: `corepack pnpm lab 1`.
+
 같은 이름의 폴더가 이미 있으면 다시 clone하지 말고 담당자에게 현재 위치를 확인합니다. VS Code의 **File → Open Folder…**에서 `/workspaces/airforce-langfuse-student`를 열면 결과 파일을 찾기 편합니다. 앞 강의의 패키지 폴더와 섞지 않습니다.
+
+터미널이 이미 `lab/`라면 다시 `cd lab`을 입력하지 않습니다. `pwd`로 위치를 확인합니다.
 
 ## 2. Langfuse 화면 접속
 
@@ -60,7 +67,7 @@ GitHub 프로필 → **Settings → Codespaces → Codespaces secrets → New se
 
 ## 4. 일반 설정
 
-실습 폴더의 `.env` 파일을 엽니다. 없다면 `node workshop.mjs setup`을 실행합니다. 아래는 **파일 내용**이며 터미널 명령이 아닙니다.
+**저장소 최상위**의 `.env` 파일을 엽니다. `lab/.env`를 만들지 않습니다. 없다면 최상위 폴더에서 `node workshop.mjs setup`을 실행합니다. 아래는 **파일 내용**이며 터미널 명령이 아닙니다.
 
 ```dotenv
 LANGFUSE_BASE_URL=https://jp.cloud.langfuse.com
@@ -80,9 +87,11 @@ RUN_TIMEOUT_SEC=180
 
 ## 5. 연결 확인
 
+`lab/` 터미널에서 실행합니다.
+
 ```sh
-node workshop.mjs lesson 0
-node workshop.mjs demo --variant=baseline --cases=C01
+pnpm lab 0
+pnpm lab 1
 ```
 
 첫 명령은 환경·프로젝트 API 인증을 점검합니다. 두 번째는 C01 한 건을 합성 실행합니다. 둘 다 실제 모델을 호출하지 않습니다.

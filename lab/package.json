@@ -1,0 +1,13 @@
+{
+  "name": "airforce-langfuse-student-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.14.2",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "scripts": {
+    "lab": "node ../scripts/lab.mjs"
+  }
+}

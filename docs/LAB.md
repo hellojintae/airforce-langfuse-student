@@ -1,11 +1,19 @@
 # 학생 실습 순서
 
-[환경 준비](SETUP.md)와 [C01 화면 읽기](TRACE_GUIDE.md)를 마친 뒤 진행합니다. 명령은 `workshop.mjs`가 있는 Codespaces 폴더에서 실행합니다.
+[환경 준비](SETUP.md)를 마친 뒤 진행합니다. 명령은 Codespaces의 `lab/` 폴더에서 실행합니다. 순서는 **1 → 2 → 3 → 4**입니다.
 
-## 실습 1. 실행 기록을 읽습니다
+## 실습 1. C01로 화면 읽기를 연습합니다
 
 ```sh
-node workshop.mjs lesson 1
+pnpm lab 1
+```
+
+C01 한 건을 실행하고 [C01 화면 읽기](TRACE_GUIDE.md)의 순서대로 Input·Output·Score를 찾습니다. `results/`는 `lab/` 안이 아니라 저장소 최상위에 있습니다. 키와 `TRACE_ENABLED=true`를 설정한 상태에서 내 Trace가 보이는 것까지 확인합니다.
+
+## 실습 2. 실행 기록을 읽습니다
+
+```sh
+pnpm lab 2
 ```
 
 10개 합성 사례를 실행합니다. 실제 모델 호출은 없습니다. 터미널의 `mode=fixture`와 새 JSON 경로를 확인하고, 내 사례의 Trace ID로 Langfuse 기록을 엽니다.
@@ -27,12 +35,12 @@ node workshop.mjs lesson 1
 추가로 확인할 코드나 조건:
 ```
 
-## 실습 2. 같은 모델의 프롬프트를 비교합니다
+## 실습 3. 같은 모델의 프롬프트를 비교합니다
 
 실제 모델 키와 일반 설정을 확인한 뒤 수업 안내에 맞춰 실행합니다.
 
 ```sh
-node workshop.mjs lesson 6
+pnpm lab 3
 ```
 
 C01·C02·C04를 같은 모델에 두 프롬프트로 요청합니다. 최대 6회 모델 요청이 발생하며, 다시 실행하면 추가 요청이 생깁니다.
@@ -52,12 +60,12 @@ A와 B 답변에서 달라진 문장:
 
 이 명령은 Trace·Score와 로컬 비교 HTML을 만듭니다. Langfuse Dataset Experiment를 자동 생성하는 명령은 아닙니다. B가 더 좋아진다고 가정하지 않고 실제 결과로 판단합니다.
 
-## 실습 3. 받은 모델 비교 결과를 읽습니다
+## 실습 4. 받은 모델 비교 결과를 읽습니다
 
-배포받은 `prepared-model-comparison.json`을 Codespaces의 실습 폴더 아래 `results`에 넣습니다. 폴더가 없으면 파일 탐색기에서 만듭니다.
+배포받은 `prepared-model-comparison.json`을 Codespaces의 **저장소 최상위 `results`**에 넣습니다. 폴더가 없으면 파일 탐색기에서 만듭니다.
 
 ```sh
-node workshop.mjs lesson 7
+pnpm lab 4
 ```
 
 생성된 `results/prepared-model-comparison.html`을 Download해서 브라우저로 엽니다. B(prompt)와 C(model)는 같은 프롬프트 v2를 사용합니다. 모델 이름이 다른지 확인한 뒤 답변·인용·실패한 검사·시간·사용량을 비교합니다.
@@ -83,4 +91,4 @@ node workshop.mjs lesson 7
 - 메모에는 키나 실제 업무 개인정보를 넣지 않습니다.
 - [Codespaces 목록](https://github.com/codespaces)에서 **Stop**합니다. 탭을 닫는 것만으로 중지되지 않습니다. [GitHub 공식 종료 안내](https://docs.github.com/en/codespaces/developing-in-a-codespace/stopping-and-starting-a-codespace)
 
-연결 장애 때 수업 안내에 따라 `node workshop.mjs lesson 3`을 실행하면 모델·Langfuse 호출 없이 합성 비교를 볼 수 있습니다. 이때 실제 모델 검증이나 Cloud 수집을 완료했다고 기록하지 않습니다.
+연결 장애 때 수업 안내에 따라 `pnpm lab offline`을 실행하면 모델·Langfuse 호출 없이 합성 비교를 볼 수 있습니다. 이때 실제 모델 검증이나 Cloud 수집을 완료했다고 기록하지 않습니다.

@@ -24,3 +24,11 @@ jobs:
       - run: node workshop.mjs lesson 3
         env:
           TRACE_ENABLED: 'false'
+      - run: pnpm lab help
+        working-directory: lab
+      - run: pnpm lab 1
+        working-directory: lab
+        env:
+          TRACE_ENABLED: 'false'
+      - run: pnpm lab offline
+        working-directory: lab
