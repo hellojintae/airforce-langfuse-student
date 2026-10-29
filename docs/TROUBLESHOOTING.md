@@ -1,0 +1,31 @@
+# 실습 중 막혔을 때
+
+같은 모델 명령을 반복하기 전에 아래 항목을 확인합니다. 담당자에게는 오류 문구·실행 명령·시각을 보여 주고 키 값은 보여 주지 않습니다.
+
+| 증상 | 먼저 확인할 것 | 다음 행동 |
+|---|---|---|
+| `workshop.mjs`를 찾지 못함 | `pwd`, 파일 탐색기의 폴더 | `/workspaces/airforce-langfuse-student`로 이동 |
+| Node 버전이 다름 | `node --version`이 `v22.x`인지 | 준비된 Codespace 안의 터미널인지 확인 |
+| 패키지를 찾지 못함 | Codespace 초기 설치가 끝났는지 | SETUP의 pnpm9.14.2 설치 명령 실행 |
+| `tracing configured` 실패 | 키 두 개, Japan 주소, `TRACE_ENABLED=true` | Secrets 접근 저장소를 확인하고 Stop 후 재접속 |
+| HTTP 401·403 | 같은 프로젝트에서 받은 키 쌍인지 | 배정받은 키를 담당자와 확인 |
+| Langfuse에서 프로젝트가 안 보임 | 계정·Japan 주소·초대 수락 | 웹 초대와 API 키를 각각 확인 |
+| Trace가 안 보임 | 프로젝트·시각·Trace ID·실행 종료 | 새로고침 후 담당자에게 전송 오류 확인 요청 |
+| 실습 6이 `LLM_MODE=mock` 오류 | `.env`의 `LLM_MODE=cloud`와 모델 설정 | 파일 저장 후 다시 확인 |
+| 모델 HTTP 오류·시간 초과 | 제공된 키·모델명·호출 한도 | 오류를 기록하고 담당자 안내 대기 |
+| 실습 7에서 파일을 못 읽음 | `results/prepared-model-comparison.json` | 배포받은 파일을 해당 위치에 업로드 |
+| 비교 HTML이 VS Code에서 코드로 보임 | 파일을 편집기로 열었는지 | 우클릭 Download 후 노트북 브라우저로 열기 |
+
+## 설정을 바꿨는데 그대로라면
+
+Codespaces Secrets 등 환경변수에 같은 이름이 있으면 이 코드에서는 `.env`보다 우선합니다. `MODEL_BASE_URL`·`MODEL_A`·`MODEL_API_KEY`가 남아 있다면 공통 `LLM_*` 설정보다 먼저 적용됩니다. 이전 값을 임의로 출력하지 말고 담당자와 설정 이름을 대조합니다.
+
+## 네트워크가 막혔을 때
+
+수업에서 배포받은 결과를 읽거나, 안내에 따라 아래 합성 비교를 진행합니다.
+
+```sh
+node workshop.mjs lesson 3
+```
+
+이 명령은 해당 실행의 Langfuse 전송을 끄고 합성 답변을 비교합니다. 실제 모델 품질·사용량을 측정한 결과는 아닙니다.

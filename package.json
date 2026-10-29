@@ -1,0 +1,33 @@
+{
+  "name": "airforce-langfuse-student",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "scripts": {
+    "preflight": "node scripts/preflight.mjs",
+    "setup:lab": "node scripts/setup.mjs",
+    "check": "tsc --noEmit",
+    "test": "tsx --test src/lab.test.ts src/live.test.ts scripts/environment.test.mjs",
+    "demo": "tsx src/main.ts demo",
+    "compare": "tsx src/main.ts compare"
+  },
+  "dependencies": {
+    "@langchain/core": "1.2.17",
+    "@langchain/langgraph": "1.4.21",
+    "@langfuse/client": "5.13.1",
+    "@langfuse/otel": "5.13.1",
+    "@langfuse/tracing": "5.13.1",
+    "@opentelemetry/api": "1.9.0",
+    "@opentelemetry/sdk-node": "0.211.0",
+    "dotenv": "17.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.10",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  },
+  "packageManager": "pnpm@9.14.2"
+}

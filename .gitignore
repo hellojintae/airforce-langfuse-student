@@ -1,0 +1,15 @@
+node_modules/
+.env
+infra/.env
+results/
+*.tar
+.qa*
+
+# Private runtime files and distribution credentials
+.env.*
+!.env.example
+!.env.openrouter.example
+private-keys/
+*.pem
+*.key
+.DS_Store
