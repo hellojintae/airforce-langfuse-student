@@ -6,9 +6,9 @@
 
 [통합장표 HTML 내려받기](https://raw.githubusercontent.com/hellojintae/airforce-langfuse-student/main/slides/lecture.html) · [GitHub에서 파일 보기](slides/lecture.html)
 
-- **122장:** 트렌드 → Langfuse 소개 → 메뉴 소개 → 실습 순서입니다.
-- HTML 파일을 내려받아 Chrome·Edge·Safari에서 엽니다. 화면 이동은 방향키, 목차는 `O`, 출처는 `R`입니다. 글꼴·이미지·영상 3개가 내장되어 약 51MB이며, 나머지 공식 영상과 외부 서비스에는 인터넷이 필요합니다.
-- **현재 본 실습:** [AI Study](https://aistudy.my/airforce)에 질문 → 본인 Langfuse Trace 확인 → 코드 발췌 이해 → 규칙 변경 전후 비교. Langfuse 프로젝트 조회 권한은 강사 안내를 따릅니다. 학생 API 키와 Codespaces 설치는 본 실습에 필요하지 않습니다.
+- **87장:** 트렌드 → Langfuse 소개 → 메뉴 소개 → 실습 순서입니다.
+- HTML 파일을 내려받아 Chrome·Edge·Safari에서 엽니다. 화면 이동은 방향키, 목차는 `O`, 출처는 `R`입니다. 글꼴·이미지·영상 3개가 내장되어 약 36MB이며, 나머지 공식 영상과 외부 서비스에는 인터넷이 필요합니다.
+- **현재 본 실습:** [AI Study](https://aistudy.my/airforce)에 질문 → 본인 Langfuse Trace 확인 → 시간·토큰·모델 비용·처리 경로 관찰 → 두 요청 비교. 모두 `aistudy-assistant` 프로젝트를 조회합니다. 강사가 교육 조직에 Viewer로 초대하며, 실습 ID와 Trace ID로 내 요청을 찾습니다. 공유 프로젝트에서는 다른 학생 기록도 보이고, 필터는 접근 제한이 아닙니다. 학생 API 키와 Codespaces 설치는 본 실습에 필요하지 않습니다.
 - 이 저장소에는 학생용 발표 장표만 추가했습니다. 발표 스크립트·강사 메모·키는 포함하지 않습니다.
 
 ## 보충 코드 실습
